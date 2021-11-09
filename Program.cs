@@ -14,12 +14,13 @@ namespace proyecto_final
             if (!File.Exists(archivo))
             {
                 StreamWriter crear = File.CreateText(archivo);
-                crear.WriteLine("ID Nombre Tipo_cuentahabiente Crédito/Débito_actual Saldo_máximo Movimientos");
+                crear.WriteLine("ID Nombre ApellidoP ApellidoM Tipo_cuentahabiente Crédito/Débito_actual Saldo_máximo Movimientos");
                 crear.Close();
             }
 
             while (continuar)
             {
+                int id = 0;
                 bool validar = false;
                 //Lectura del archivo
                 StreamReader lecturaContenido = File.OpenText(archivo);
@@ -28,7 +29,7 @@ namespace proyecto_final
 
                 //creación de matriz
                 string[] filas = contenido.Split("\n");
-                string[,] datos = new string[filas.Length, 6];
+                string[,] datos = new string[filas.Length, 8];
 
                 //Llenado de matriz
                 for (int i = 0; i < (datos.GetLength(0) - 1); i++)
@@ -42,13 +43,12 @@ namespace proyecto_final
 
                 while (!validar)
                 {
-                    Console.WriteLine("¿Qué deseas hacer?\n 1.- Dar de alta un cuentahabiente\n 2.- Dar de baja un cuentahabiente\n 3.- Modificar el crédito máximo de un cuentahabiente \n 4.- Realizar movimientos en una cuenta\n 5.- Salir");
+                    Console.WriteLine("¿Qué deseas hacer?\n 1.- Dar de alta un cuentahabiente\n 2.- Dar de baja un cuentahabiente\n 3.- Modificar el crédito máximo de un cuentahabiente \n 4.- Realizar movimientos en una cuenta\n 5.- Ver el registro de cuentas del banco\n 6.- Salir");
                     int menu = ValidarNumero(Console.ReadLine());
 
                     switch (menu)
                     {
                         case 1:
-
                             break;
                         case 2:
 
@@ -86,6 +86,9 @@ namespace proyecto_final
                             validar = false;
                             break;
                         case 5:
+
+                            break;
+                        case 6:
                             continuar = false;
                             break;
                         default:
